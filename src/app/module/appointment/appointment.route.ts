@@ -62,4 +62,4 @@ router.get(
 );
 
 
-export const AppointementRoutes = router;
+export const AppointmentRoutes = router;
