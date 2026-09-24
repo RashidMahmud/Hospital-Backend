@@ -7,15 +7,15 @@ import {
 	Role,
 	ScheduleStatus,
 } from "../../../generated/prisma/enums";
-import { ApppointmentWhereInput } from "../../../generated/prisma/models";
+import type { ApppointmentWhereInput } from "../../../generated/prisma/models";
 import config from "../../config";
-import { IQuery } from "../../interfaces";
+import type { IQuery } from "../../interfaces";
 import { getBkashIdToken } from "../../lib/bkash";
 import { transporter } from "../../lib/nodemailer";
 import { prisma } from "../../lib/prisma";
 import type { RequestUser } from "../../middleware/checkAuth";
 import { AppError } from "../../utils/AppError";
-import {
+import type {
 	IBookAppointmentPayload,
 	ICancelAppointmentPayload,
 	IPayAppointmentPayload,

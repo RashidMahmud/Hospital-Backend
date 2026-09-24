@@ -10,16 +10,16 @@ import {
 	Role,
 	ScheduleStatus,
 } from "../../../generated/prisma/enums";
-import { DoctorWhereInput } from "../../../generated/prisma/models";
+import type { DoctorWhereInput } from "../../../generated/prisma/models";
 import config from "../../config";
-import { IQuery } from "../../interfaces";
+import type { IQuery } from "../../interfaces";
 import { cloudinary } from "../../lib/cloudinary";
 import { transporter } from "../../lib/nodemailer";
 import { prisma } from "../../lib/prisma";
 import { redisClient } from "../../lib/redis";
-import { RequestUser } from "../../middleware/checkAuth";
+import type { RequestUser } from "../../middleware/checkAuth";
 import { AppError } from "../../utils/AppError";
-import {
+import type {
 	IApplyAsDoctorPayload,
 	IApproveDoctorPayload,
 	IUpdateDoctorProfilePayload,
