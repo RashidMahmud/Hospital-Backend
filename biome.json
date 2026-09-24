@@ -8,7 +8,7 @@
 		"ignoreUnknown": false,
 		"includes": [
 			"**",
-			"!src/genrated",
+			"!src/generated",
 			"!src/app/templates"
 		]
 		
