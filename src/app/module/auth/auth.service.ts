@@ -1,4 +1,3 @@
-/** biome-ignore-all lint/style/useConst: <explanation> */
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
 import ejs from "ejs";
@@ -448,7 +447,7 @@ const googleLogin = async (payload: IGoogleLoginPayload) => {
 					},
 				},
 			});
-			const tempatePath = path.join(
+			const templatePath = path.join(
 				process.cwd(),
 				"src/app/templates/patient-welcome-email.ejs",
 			);
@@ -457,7 +456,7 @@ const googleLogin = async (payload: IGoogleLoginPayload) => {
 				name: user.name,
 			};
 
-			const html = await ejs.renderFile(tempatePath, templateData);
+			const html = await ejs.renderFile(templatePath, templateData);
 
 			await transporter.sendMail({
 				from: config.email_sender,
@@ -538,7 +537,7 @@ const forgotPassword = async (payload: IForgotPasswordPayload) => {
 
 	const otp = crypto.randomInt(100000, 1000000).toString();
 
-	const key = `forgor-password-otp:${isUserExist.email}`;
+	const key = `forgot-password-otp:${isUserExist.email}`;
 
 	const expirationSeconds = 5 * 60;
 
@@ -549,7 +548,7 @@ const forgotPassword = async (payload: IForgotPasswordPayload) => {
 		},
 	});
 
-	const tempatePath = path.join(
+	const templatePath = path.join(
 		process.cwd(),
 		"src/app/templates/forgot-password.ejs",
 	);
@@ -560,7 +559,7 @@ const forgotPassword = async (payload: IForgotPasswordPayload) => {
 		expirationMinutes: expirationSeconds / 60,
 	};
 
-	const html = await ejs.renderFile(tempatePath, templateData);
+	const html = await ejs.renderFile(templatePath, templateData);
 
 	await transporter.sendMail({
 		from: config.email_sender,
@@ -601,7 +600,7 @@ const resetPassword = async (payload: IResetPasswordPayload) => {
 		throw new AppError(httpStatus.BAD_REQUEST, "User Has Account With Google");
 	}
 
-	const key = `forgor-password-otp:${isUserExist.email}`;
+	const key = `forgot-password-otp:${isUserExist.email}`;
 
 	const redisOtp = await redisClient.get(key);
 
@@ -629,7 +628,7 @@ const resetPassword = async (payload: IResetPasswordPayload) => {
 
 	await redisClient.del([key]);
 
-	const tempatePath = path.join(
+	const templatePath = path.join(
 		process.cwd(),
 		"src/app/templates/reset-password-success.ejs",
 	);
@@ -638,7 +637,7 @@ const resetPassword = async (payload: IResetPasswordPayload) => {
 		name: isUserExist.name,
 	};
 
-	const html = await ejs.renderFile(tempatePath, templateData);
+	const html = await ejs.renderFile(templatePath, templateData);
 
 	await transporter.sendMail({
 		from: config.email_sender,
